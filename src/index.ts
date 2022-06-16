@@ -2,6 +2,7 @@ import express from "express";
 import ejs from "ejs";
 import nodemailer from "nodemailer";
 import path from "path";
+import fs from "fs";
 
 const app = express();
 
@@ -59,6 +60,12 @@ app.post("/", (req, res) => {
   });
 
   res.send("email successfull");
+});
+
+app.get("/download", (req, res) => {
+  // const file = fs.createWriteStream(path.join(__dirname, "data", "data.txt"));
+  res.download(path.join(__dirname, "data", "data.txt"));
+  console.log("File downloaded");
 });
 
 const PORT = 3000;
